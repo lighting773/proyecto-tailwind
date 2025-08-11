@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Página Personal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Estilos personalizados para el carrusel */
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+    }
+    .carousel-inner {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-item {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .prev {
+      left: 10px;
+    }
+    .next {
+      right: 10px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+  <!-- Sección de Bienvenida -->
+  <section class="py-12 bg-white text-center">
+    <h1 class="text-4xl font-bold text-blue-700">¡Hola! Soy Juan Ricaurte</h1>
+    <p class="mt-4 text-lg text-gray-600">Desarrollador web de Fundetec.</p>
+  </section>
+
+  <!-- Sección de Servicios -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-6 text-blue-800">Servicios</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-semibold text-blue-600">Diseño Web</h3>
+          <p class="mt-2 text-gray-600">Creación de sitios web modernos y responsivos.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-semibold text-blue-600">Desarrollo Frontend</h3>
+          <p class="mt-2 text-gray-600">Interfaz de usuario dinámica y funcional.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <h3 class="text-lg font-semibold text-blue-600">Mantenimiento</h3>
+          <p class="mt-2 text-gray-600">Actualización y soporte para tu sitio web.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Carrusel -->
+  <section class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-6 text-blue-800">Galería de Servicios</h2>
+      <div class="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item">
+            <img src="img/images.png" alt="Diseño Web">
+          </div>
+          <div class="carousel-item">
+            <img src="img/img1.jpg" alt="Desarrollo Frontend">
+          </div>
+          <div class="carousel-item">
+            <img src="img/images.jpeg" alt="Mantenimiento">
+          </div>
+        </div>
+        <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+      </div>
+    </div>
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.carousel-item');
+      const totalSlides = slides.length;
+
+      function moveSlide(direction) {
+        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+        const carouselInner = document.querySelector('.carousel-inner');
+        carouselInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+    </script>
+  </section>
+
+  <!-- Sección de Contacto -->
+  <section class="py-12 bg-gray-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-2xl font-bold mb-6 text-blue-800">Contáctame</h2>
+      <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+        <img src="img/Screenshot 2025-07-28 130630.png" alt="Foto de Juan Pérez" class="w-32 h-32 rounded-full shadow-lg">
+        <div class="w-full max-w-md">
+          <form class="bg-white p-6 rounded-lg shadow-lg">
+            <div class="mb-4">
+              <label for="name" class="block text-left text-gray-700 font-semibold">Nombre</label>
+              <input type="text" id="name" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tu nombre" required>
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-left text-gray-700 font-semibold">Correo</label>
+              <input type="email" id="email" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Tu correo" required>
+            </div>
+            <div class="mb-4">
+              <label for="message" class="block text-left text-gray-700 font-semibold">Mensaje</label>
+              <textarea id="message" class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Tu mensaje" required></textarea>
+            </div>
+            <button type="button" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie de Página -->
+  <footer class="py-6 bg-blue-800 text-white text-center">
+    <p>&copy; 2025 Juan Pérez. Todos los derechos reservados.</p>
+    <p class="mt-2">Desarrollador web | Fundetec</p>
+  </footer>
+</body>
+</html>
